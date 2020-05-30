@@ -133,6 +133,8 @@ def train_model(paramerers, project_path):
 
     print(device)
 
+    model = model.to(device)
+
     since = time.time()
 
     val_acc_history = []
