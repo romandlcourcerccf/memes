@@ -1,0 +1,22 @@
+{
+
+  "dataset": "/Users/romanroman/projects/work/dvc_flow",
+  "log": "/ml/dl_cource/practice/flow/project/models/",
+  "image_size":224,
+  "classes": "meme,val",
+  "project_path" : "/content/memes/all/",
+  "split_rate" :".7,.2,.1",
+    "hyper_parameters":[
+        {"name": "lr",
+         "type": "range",
+         "bounds": [0.0001, 0.1]},
+        {"name": "num_epochs",
+         "type": "range",
+         "bounds": [5, 25]},
+        {"name": "level_to_freeze",
+         "type": "range",
+         "bounds": [0, 18]}
+        ]
+
+}
+
