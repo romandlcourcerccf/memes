@@ -120,8 +120,8 @@ def build_model(level_to_freeze):
 
     model = models.squeezenet1_0(pretrained=True)
     # set_parameter_requires_grad(model_ft, feature_extract)
-    model_ft.classifier[1] = nn.Conv2d(512, 2, kernel_size=(1,1), stride=(1,1))
-    model_ft.num_classes = 2
+    model.classifier[1] = nn.Conv2d(512, 2, kernel_size=(1,1), stride=(1,1))
+    model.num_classes = 2
 
 
 def train_model(paramerers, project_path):
