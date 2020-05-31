@@ -124,7 +124,7 @@ def build_model(level_to_freeze):
     # model.num_classes = 2
     # return model
 
-    model = models.resnet18(pretrained=use_pretrained)
+    model = models.resnet18(pretrained=True)
     # set_parameter_requires_grad(model_ft, feature_extract)
     num_ftrs = model.fc.in_features
     model_ft.fc = nn.Linear(num_ftrs, 2)
