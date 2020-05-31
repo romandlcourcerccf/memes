@@ -127,7 +127,8 @@ def train_model(paramerers, project_path):
     criterion = nn.BCELoss(reduce=True)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x, transform=data_transforms[x]) for x in ['train', 'val']}
+    image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x) for x in ['train', 'val']}
+    # image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x, transform=data_transforms[x]) for x in ['train', 'val']}
     dataloaders = { x: torch.utils.data.DataLoader(image_datasets[x], batch_size=batch_size, shuffle=True, num_workers=1) for x in ['train', 'val']}
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
