@@ -112,7 +112,7 @@ class MemesDataSet(torch.utils.data.Dataset):
 
 def build_model(level_to_freeze):
     model = models.mobilenet_v2(pretrained=True)
-    set_parameter_requires_grad(model, level_to_freeze)
+    # set_parameter_requires_grad(model, level_to_freeze)
     print(model.classifier)
     model.classifier[1] = nn.Sequential(nn.Linear(1280, 2), nn.Softmax())
     return model
