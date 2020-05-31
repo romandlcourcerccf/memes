@@ -50,10 +50,10 @@ root_path = ROOT_DIR
 data_transforms = {
         'train': A.Compose([
             A.Resize(image_size, image_size),
-            A.HorizontalFlip(),
-            A.VerticalFlip(),
-            A.RandomBrightnessContrast(),
-            A.ShiftScaleRotate(rotate_limit=15, scale_limit=0.10),
+            # A.HorizontalFlip(),
+            # A.VerticalFlip(),
+            # A.RandomBrightnessContrast(),
+            # A.ShiftScaleRotate(rotate_limit=15, scale_limit=0.10),
             A.Normalize(),
 
         ], p=1),
@@ -99,8 +99,8 @@ class MemesDataSet(torch.utils.data.Dataset):
 
         image = Image.open(join(self.data_dir, self.labels[idx], self.files[idx])).convert('RGB')
         image = np.array(image)
-        # image = self.transform(image=image)
-        # image = image['image']
+        image = self.transform(image=image)
+        image = image['image']
         image = image.transpose(2, 1, 0)
         label_num = self.mapping[self.labels[idx].lower()]
         # TODO Do this a fancy way
@@ -127,8 +127,7 @@ def train_model(paramerers, project_path):
     criterion = nn.BCELoss(reduce=True)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x) for x in ['train', 'val']}
-    # image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x, transform=data_transforms[x]) for x in ['train', 'val']}
+    image_datasets = {x: MemesDataSet(data_dir=project_path, is_train=x, transform=data_transforms[x]) for x in ['train', 'val']}
     dataloaders = { x: torch.utils.data.DataLoader(image_datasets[x], batch_size=batch_size, shuffle=True, num_workers=1) for x in ['train', 'val']}
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
