@@ -99,7 +99,7 @@ class MemesDataSet(torch.utils.data.Dataset):
 
         image = Image.open(join(self.data_dir, self.labels[idx], self.files[idx])).convert('RGB')
         image = np.array(image)
-        image = self.transform(image=image)
+        # image = self.transform(image=image)
         image = image['image']
         image = image.transpose(2, 1, 0)
         label_num = self.mapping[self.labels[idx].lower()]
