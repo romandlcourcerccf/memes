@@ -111,11 +111,18 @@ class MemesDataSet(torch.utils.data.Dataset):
 
 
 def build_model(level_to_freeze):
-    model = models.mobilenet_v2(pretrained=True)
-    # set_parameter_requires_grad(model, level_to_freeze)
-    print(model.classifier)
-    model.classifier[1] = nn.Sequential(nn.Linear(1280, 2), nn.Softmax())
-    return model
+    # model = models.mobilenet_v2(pretrained=True)
+    # # set_parameter_requires_grad(model, level_to_freeze)
+    # print(model.classifier)
+    # model.classifier[1] = nn.Sequential(nn.Linear(1280, 2), nn.Softmax())
+    # return model
+
+
+    model = models.squeezenet1_0(pretrained=True)
+    # set_parameter_requires_grad(model_ft, feature_extract)
+    model_ft.classifier[1] = nn.Conv2d(512, 2, kernel_size=(1,1), stride=(1,1))
+    model_ft.num_classes = 2
+
 
 def train_model(paramerers, project_path):
     batch_size = 8
