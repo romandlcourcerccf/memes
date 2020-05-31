@@ -125,7 +125,7 @@ def build_model(level_to_freeze):
     # return model
 
     model = models.resnet18(pretrained=True)
-    # set_parameter_requires_grad(model_ft, feature_extract)
+    set_parameter_requires_grad(model, level_to_freeze)
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, 2)
     input_size = 224
