@@ -122,6 +122,7 @@ def build_model(level_to_freeze):
     # set_parameter_requires_grad(model_ft, feature_extract)
     model.classifier[1] = nn.Conv2d(512, 2, kernel_size=(1,1), stride=(1,1))
     model.num_classes = 2
+    return model
 
 
 def train_model(paramerers, project_path):
