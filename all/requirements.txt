@@ -49,7 +49,7 @@ pathspec==0.8.0
 Pillow==7.1.2
 plotly==4.6.0
 ply==3.11
-protobuf==3.11.3
+protobuf==3.18.3
 pyasn1==0.4.8
 pydot==1.4.1
 pygtrie==2.3.2
